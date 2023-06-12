@@ -18,6 +18,7 @@ use crate::{
 };
 #[cfg(feature = "ensemble-staking")]
 use crate::cosmwasm_std::{Uint128, FullDelegation, Validator, Delegation, StakingMsg, DistributionMsg};
+use crate::ensemble::TestStorage;
 
 use super::{
     bank::Balances,
@@ -370,6 +371,19 @@ impl ContractEnsemble {
     {
         let instance = self.ctx.state.instance(address.as_ref())?;
         borrow(&instance.storage as &dyn Storage);
+
+        Ok(())
+    }
+
+    /// Provides read access to the test storage associated with the given contract address.
+    ///
+    /// Returns `Err` if a contract with `address` wasn't found.
+    #[inline]
+    pub fn contract_test_storage<F>(&self, address: impl AsRef<str>, borrow: F) -> EnsembleResult<()>
+        where F: FnOnce(&TestStorage)
+    {
+        let instance = self.ctx.state.instance(address.as_ref())?;
+        borrow(&instance.storage);
 
         Ok(())
     }
