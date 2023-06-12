@@ -19,6 +19,7 @@ mod event;
 mod tests;
 
 pub use ensemble::*;
+pub use storage::*;
 pub use env::*;
 pub use querier::*;
 pub use block::Block;
