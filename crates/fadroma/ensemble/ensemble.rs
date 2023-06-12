@@ -897,6 +897,9 @@ impl Context {
                 height: self.block.height,
                 time: Timestamp::from_seconds(self.block.time),
                 chain_id: self.chain_id.clone(),
+                random: Some(
+                    Binary::from_base64("wLsKdf/sYqvSMI0G0aWRjob25mrIB0VQVjTjDXnDafk=").unwrap(),
+                ),
             },
             transaction: None,
             contract: ContractInfo {
