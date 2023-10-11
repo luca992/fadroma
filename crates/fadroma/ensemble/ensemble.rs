@@ -429,6 +429,7 @@ impl ContractEnsemble {
             .ok_or_else(|| EnsembleError::registry(RegistryError::IdNotFound(code_id)))?;
 
         let sub_msg = SubMsg::new(WasmMsg::Instantiate {
+            admin: None,
             code_id,
             code_hash: contract.code_hash.clone(),
             msg: to_binary(msg)?,
@@ -764,6 +765,7 @@ impl Context {
                     Ok((execute_resp.into(), events))
                 }
                 WasmMsg::Instantiate {
+                    admin: _,
                     code_id,
                     msg,
                     funds,

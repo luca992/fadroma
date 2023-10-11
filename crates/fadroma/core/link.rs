@@ -38,6 +38,7 @@ impl ContractCode {
     ) -> StdResult<WasmMsg>
     {
         Ok(WasmMsg::Instantiate {
+            admin: None,
             code_id: self.id,
             code_hash: self.code_hash,
             label: label.into(),

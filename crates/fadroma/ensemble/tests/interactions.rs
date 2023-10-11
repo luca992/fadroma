@@ -65,6 +65,7 @@ impl ContractHarness for Counter {
 
         let instantiate_msg = SubMsg::reply_on_success(
             WasmMsg::Instantiate {
+                admin: None,
                 code_id: msg.info.id,
                 code_hash: msg.info.code_hash,
                 funds: vec![coin(SEND_AMOUNT, SEND_DENOM)],
